@@ -1,0 +1,30 @@
+name: 'NumenActions OnPush'
+description: 'Do all the things need for a push'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '2'
+    - name: Change Type
+      uses: fiveateooate/numenactions-changetype@v0.0.6
+    - name: Run Super-Linter
+      if: env.NUMEN_CHANGE_TYPE != 'ChangeType.Manifest'
+      uses: github/super-linter@v3
+      env:
+        DEFAULT_BRANCH: main
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VALIDATE_JSCPD: false
+        FILTER_REGEX_EXCLUDE: \.numen/deploy/overlays/**
+    - name: DockerBuild # Set Python version
+      if: env.NUMEN_CHANGE_TYPE != 'ChangeType.Manifest'
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: NumenBuilder
+      uses: fiveateooate/numenactions-numenbuilder@v0.0.1
+    - name: NumenVet
+      uses: fiveateooate/numenactions-numenvet@v0.0.1
+    - name: Publish
+      uses: fiveateooate/numenactions-publish@v0.0.1
