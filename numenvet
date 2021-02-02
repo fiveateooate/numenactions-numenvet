@@ -12,14 +12,14 @@ def main():
         "--loglevel", help="log level", default=os.environ.get("LOGLEVEL")
     )
     parser.add_argument(
-        "--assetpath", help="log level", default=os.environ.get("NUMEN_ASSSET_PATH")
+        "--assetpath", help="log level", default=os.environ.get("NUMEN_ASSET_PATH")
     )
     args = parser.parse_args()
     logger = logger_setup("numenactions", args.loglevel)
 
     logger.debug("runing changetype action")
-    eddie = PolarisVetter()
-    output = eddie.Vet(args.assetpath)
+    eddie = PolarisVetter(args.assetpath)
+    output = eddie.Vet()
     logger.debug(f"output {output}")
 
 
