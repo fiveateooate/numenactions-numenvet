@@ -3,7 +3,7 @@
 import argparse
 import os
 
-import numenactions
+from numenactions import PolarisVetter, logger_setup
 
 
 def main():
@@ -15,10 +15,10 @@ def main():
         "--assetpath", help="log level", default=os.environ.get("NUMEN_ASSSET_PATH")
     )
     args = parser.parse_args()
-    logger = numenactions.logging.logger_setup("numenactions", args.loglevel)
+    logger = logger_setup("numenactions", args.loglevel)
 
     logger.debug("runing changetype action")
-    eddie = numenactions.vetters.PolarisVetter()
+    eddie = PolarisVetter()
     output = eddie.Vet(args.assetpath)
     logger.debug(f"output {output}")
 
