@@ -11,15 +11,16 @@ def main():
     parser.add_argument(
         "--loglevel", help="log level", default=os.environ.get("LOGLEVEL")
     )
+    parser.add_argument(
+        "--assetpath", help="log level", default=os.environ.get("NUMEN_ASSSET_PATH")
+    )
     args = parser.parse_args()
     logger = numenactions.logging.logger_setup("numenactions", args.loglevel)
 
     logger.debug("runing changetype action")
-    ct = numenactions.changetype.ChangeType()
-    change = ct.changetype()
-    logger.debug(f"changetype: {change}")
-    eh = numenactions.envhelper.EnvHelper()
-    eh.set_github_env("NUMEN_CHANGE_TYPE", change)
+    eddie = numenactions.vetters.PolarisVetter()
+    output = eddie.Vet(args.assetpath)
+    logger.debug(f"output {output}")
 
 
 if __name__ == "__main__":
