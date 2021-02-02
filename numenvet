@@ -19,7 +19,7 @@ def main():
 
     logger.debug("runing changetype action")
     eddie = PolarisVetter(args.assetpath)
-    output = eddie.Vet()
+    output = eddie.vet()
     logger.debug(f"output {output}")
 
 
