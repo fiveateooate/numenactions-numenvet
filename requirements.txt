@@ -1,2 +1,3 @@
 git+https://github.com/fiveateooate/numenactions.git@main#egg=numenactions
 argparse
+termcolor>=1.1.0

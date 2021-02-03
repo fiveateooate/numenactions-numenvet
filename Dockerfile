@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM docker.pkg.github.com/fiveateooate/numenactions/numenactions:main
 
 ARG POLARIS_SRC=https://github.com/FairwindsOps/polaris/releases/download/3.0.3/polaris_3.0.3_linux_amd64.tar.gz
 
