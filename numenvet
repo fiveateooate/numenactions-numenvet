@@ -26,9 +26,9 @@ def main():
         logger.info(colored(f"\n{output}", "yellow"))
     else:
         logger.debug(f"output {output}")
-    return output.exit_code
+    return exitcode
 
 
 if __name__ == "__main__":
-    exit_code = main()
-    sys.exit(exit_code)
+    exitcode = main()
+    sys.exit(exitcode)
