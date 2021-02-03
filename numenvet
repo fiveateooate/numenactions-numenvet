@@ -5,6 +5,7 @@ import os
 import sys
 
 from numenactions import PolarisVetter, logger_setup
+from termcolor import colored
 
 
 def main():
@@ -20,8 +21,11 @@ def main():
 
     logger.debug("runing changetype action")
     eddie = PolarisVetter(args.assetpath)
-    output = eddie.vet()
-    logger.debug(f"output {output}")
+    (output, exitcode) = eddie.vet()
+    if exitcode != 0:
+        logger.info(colored(f"\n{output}", "yellow"))
+    else:
+        logger.debug(f"output {output}")
     return output.exit_code
 
 
