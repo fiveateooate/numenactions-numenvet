@@ -3,7 +3,8 @@ description: 'Vet charts'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  entrypoint: '/usr/local/bin/numenvet'
+  entrypoint: '/usr/local/bin/numencli'
   args:
     - --loglevel
     - debug
+    - vet
