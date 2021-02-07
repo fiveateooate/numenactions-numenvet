@@ -2,7 +2,7 @@ name: 'NumenActions NumenVet'
 description: 'Vet charts'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ghcr.io/fiveateooate/numenactions:latest'
   entrypoint: '/usr/local/bin/numencli'
   args:
     - --loglevel
